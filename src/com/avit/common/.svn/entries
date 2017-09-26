@@ -1,0 +1,40 @@
+10
+
+dir
+38491
+http://192.168.2.96/svn/avit/02_product/PORTAL/tools/common/src/com/avit/common
+http://192.168.2.96/svn/avit
+
+
+
+2017-02-13T09:13:02.268468Z
+38484
+wuchuisen
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d881c268-5c81-4d69-b6ac-ed4e9099e0f2
+
+http
+dir
+
+http4
+dir
+
+json
+dir
+
+lang
+dir
+

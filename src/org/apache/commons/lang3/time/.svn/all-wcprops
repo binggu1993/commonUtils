@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time
+END
+FastDatePrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/FastDatePrinter.java
+END
+DateParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/DateParser.java
+END
+StopWatch.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/StopWatch.java
+END
+DatePrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/DatePrinter.java
+END
+DateFormatUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/DateFormatUtils.java
+END
+FormatCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/FormatCache.java
+END
+CalendarReflection.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/CalendarReflection.java
+END
+FastDateParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/FastDateParser.java
+END
+DurationFormatUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/DurationFormatUtils.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/package-info.java
+END
+DateUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/DateUtils.java
+END
+FastDateFormat.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/time/FastDateFormat.java
+END

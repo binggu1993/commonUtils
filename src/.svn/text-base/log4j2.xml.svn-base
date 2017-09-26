@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="off">
+    <!--先定义所有的appender-->
+        <properties> 
+         <!-- 日志根目录 -->
+        <property name="LOG_HOME">logs/</property>
+    </properties> 
+    <appenders>
+        <!--这个输出控制台的配置-->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+<!--             <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/> -->
+            <!--这个都知道是输出日志的格式-->
+            <PatternLayout pattern="[%p][%d{ISO8601}][%l]%m%n"/>
+        </Console>
+           
+            <RollingFile name="debug" fileName="${LOG_HOME}/common_debug.log"
+                     filePattern="${LOG_HOME}/mqtt.log_%d{yyyyMMdd}.dat">
+            <PatternLayout pattern="[%p][%d{ISO8601}][%l]%m%n"/>
+            <SizeBasedTriggeringPolicy size="50M"/>
+            </RollingFile>
+        
+    </appenders>
+    <!--然后定义logger，分别引入对应的appender，实现定向输出-->
+    <loggers>
+    <!--     实时消息 -->
+        
+        <!--建立一个默认的root的logger-->
+        <root level="debug" includeLocation="true">
+             <appender-ref ref="debug"/>
+             <appender-ref ref="Console"/>
+        </root>
+
+    </loggers>
+</configuration>

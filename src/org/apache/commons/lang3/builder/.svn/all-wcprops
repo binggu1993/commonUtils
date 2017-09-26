@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder
+END
+ToStringBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/ToStringBuilder.java
+END
+ToStringExclude.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/ToStringExclude.java
+END
+StandardToStringStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/StandardToStringStyle.java
+END
+Diff.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/Diff.java
+END
+ToStringStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/ToStringStyle.java
+END
+IDKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/IDKey.java
+END
+ReflectionToStringBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/ReflectionToStringBuilder.java
+END
+DiffResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/DiffResult.java
+END
+MultilineRecursiveToStringStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/MultilineRecursiveToStringStyle.java
+END
+HashCodeBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/HashCodeBuilder.java
+END
+HashCodeExclude.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/HashCodeExclude.java
+END
+Diffable.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/Diffable.java
+END
+EqualsBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/EqualsBuilder.java
+END
+CompareToBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/CompareToBuilder.java
+END
+EqualsExclude.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/EqualsExclude.java
+END
+Builder.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/Builder.java
+END
+DiffBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/DiffBuilder.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/package-info.java
+END
+RecursiveToStringStyle.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/builder/RecursiveToStringStyle.java
+END

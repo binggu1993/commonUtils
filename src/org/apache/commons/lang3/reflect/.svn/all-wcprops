@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect
+END
+MethodUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/MethodUtils.java
+END
+Typed.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/Typed.java
+END
+TypeUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/TypeUtils.java
+END
+FieldUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/FieldUtils.java
+END
+ConstructorUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/ConstructorUtils.java
+END
+MemberUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/MemberUtils.java
+END
+InheritanceUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/InheritanceUtils.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/package-info.java
+END
+TypeLiteral.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/reflect/TypeLiteral.java
+END

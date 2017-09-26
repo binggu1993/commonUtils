@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/avit/!svn/ver/38484/02_product/PORTAL/tools/common/testsrc/com/avit/common/http
+END
+TestHttp.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/avit/!svn/ver/38336/02_product/PORTAL/tools/common/testsrc/com/avit/common/http/TestHttp.java
+END
+HttpConcurrentTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/avit/!svn/ver/38484/02_product/PORTAL/tools/common/testsrc/com/avit/common/http/HttpConcurrentTest.java
+END

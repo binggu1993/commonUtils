@@ -1,0 +1,381 @@
+package com.avit.common.http;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.util.HashMap;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.httpclient.Header;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.Test;
+
+import com.avit.common.http4.exception.HttpProcessException;
+
+
+public class TestHttp
+{
+    
+    public static Logger log = LogManager.getLogger(TestHttp.class);
+    
+    //测试正常通信链接：200
+    private static String NORMAL_URL = "http://192.168.2.212:8083/iscg/iscg/invokeServiceDsmcc.action";
+    
+    //测试连接超时链接：504(如:链接不存在时)
+    private static String CONNTECT_TIME_OUT_URL = "http://192.168.6.216:8083/iscg/iscg/invokeServiceDsmcc.action";
+    
+    //测试读超时链接：504（如：服务端响应超时）
+    private static String READ_TIME_OUT_URL = "http://192.168.100.79:8080/TestServer/TestServlet?name=haha";
+    
+    //测试连接被拒绝：504（如:服务端端口未启用）
+    private static String CONNECT_REFUSED_URL="http://192.168.2.212:9084/iscg/iscg/invokeServiceDsmcc.action";
+    
+    //测试 资源不存在：404（如:应用错误）
+    private static String NOT_FOUND_URL="http://192.168.2.212:8086/iscg/iscg/invokeServiceDsmcc.action";
+    
+   //测试 Http Version Not Supported：505（如：连接参数带空格等特殊字符）
+    private static String NOT_SUPPORTED_URL = "http://192.168.2.212:8083/iscg/iscg/invokeServiceDsmcc.action?a= b";
+    
+    private static String XML="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><InvokeService locationCode=\"01\" extend=\"clientIP=null\" businessCode=\"BS09183242136\" startPoint=\"0\" userCode=\"21000374\" productCode=\"PT20161009183747843\" poCode=\"PO1476009528514\" serviceCode=\"VOD\" contentCode=\"VODC2016101417560211\"/>";
+    /**
+     * Test Get Normal(200)
+     */
+    @Test
+    public void testGet()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,"http://192.168.100.98:1884/PublishMsg", null, HttpRequest.METHOD_GET, null);
+            
+            for(String key:result.keySet())
+            {
+                log.debug(key+":"+result.get(key));
+            }
+            assertEquals("response status is not 200", "200", result.get("code"));
+        }
+        catch (Exception e)
+        {
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Get Conection TimeOut
+     */
+    @Test
+    public void testGetConnectionTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,CONNTECT_TIME_OUT_URL, null, HttpRequest.METHOD_GET, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not connect time out exception", result.get("message"), containsString("The host did not accept the connection within timeout"));
+        }
+        catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Get Read TimeOut
+     */
+    @Test
+    public void testGetReadTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,READ_TIME_OUT_URL, null, HttpRequest.METHOD_GET, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not read time out exception", result.get("message"), containsString("Read timed out"));
+            //            assertThat("not read time out exception", e.getMessage(), containsString("Read timed out"));
+        }
+        catch (Exception e)
+        {
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Put Normal(200)
+     */
+    @Test
+    public void testPut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,NORMAL_URL, XML, HttpRequest.METHOD_PUT, null);
+            assertEquals("response status is not 200", "200", result.get("code"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Put Conection TimeOut
+     */
+    @Test
+    public void testPutConnectionTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,CONNTECT_TIME_OUT_URL, XML, HttpRequest.METHOD_PUT, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not connect time out exception", result.get("message"), containsString("The host did not accept the connection within timeout"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Put Read TimeOut
+     */
+    @Test
+    public void testPutReadTimeOut()
+    {
+        try
+        {
+
+            HashMap<String, String> result=Http.sentRequest(true,READ_TIME_OUT_URL, XML, HttpRequest.METHOD_PUT, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not read time out exception", result.get("message"), containsString("Read timed out"));
+            //            assertThat("not read time out exception", e.getMessage(), containsString("Read timed out"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Post Normal(200) For Xml
+     */
+    @Test
+    public void testPost()
+    {
+
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,"http://192.168.100.98:1883/PublishMsg", XML, HttpRequest.METHOD_POST, null);
+            assertEquals("response status is not 200", "200", result.get("code"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    
+    }
+    
+    /**
+     * Test Post Normal(200) For Json
+     */
+    @Test
+    public void testPostForJson()
+    {
+        JSONObject param = new JSONObject();
+        param.put("name", "rarnu");
+        param.put("password", "123456");
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,NORMAL_URL, param.toString(), HttpRequest.METHOD_POST, null);
+            assertEquals("response status is not 200", "200", result.get("code"));
+        }
+        catch (Exception e)
+        {
+            fail("post method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Post Conection TimeOut
+     */
+    @Test
+    public void testPostConnectionTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,CONNTECT_TIME_OUT_URL, XML, HttpRequest.METHOD_POST, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not connect time out exception", result.get("message"), containsString("The host did not accept the connection within timeout"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Post Read TimeOut
+     */
+    @Test
+    public void testPostReadTimeOut()
+    {
+        try
+        {
+
+            HashMap<String, String> result=Http.sentRequest(true,READ_TIME_OUT_URL, XML, HttpRequest.METHOD_POST, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not read time out exception", result.get("message"), containsString("Read timed out"));
+            //            assertThat("not read time out exception", e.getMessage(), containsString("Read timed out"));
+        }
+        catch (Exception e)
+        {
+            fail("put method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Delete Normal(200)
+     */
+    @Test
+    public void testDelete()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,NORMAL_URL, null, HttpRequest.METHOD_DELETE, null);
+            assertEquals("response status is not 200", "200", result.get("code"));
+        }
+        catch (Exception e)
+        {
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    /**
+      * Test Delete  Conection TimeOut
+      */
+    @Test
+    public void testDeleteConnectionTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,CONNTECT_TIME_OUT_URL, null, HttpRequest.METHOD_DELETE, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not connect time out exception", result.get("message"), containsString("The host did not accept the connection within timeout"));
+        }
+        catch (Exception e)
+        {
+            // TODO Auto-generated catch block
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    /**
+     * Test Test Delete Read TimeOut
+     */
+    
+    @Test
+    public void testDeleteReadTimeOut()
+    {
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,READ_TIME_OUT_URL, null, HttpRequest.METHOD_DELETE, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not read time out exception", result.get("message"), containsString("Read timed out"));
+            //            assertThat("not read time out exception", e.getMessage(), containsString("Read timed out"));
+        }
+        catch (Exception e)
+        {
+            fail("get method excute error: " + e);
+        }
+    }
+    
+    //  ------------------------------华丽分割线----------------------------------
+    //  ------------------------------华丽分割线----------------------------------
+    //  ------------------------------下面测试几种常见的异常情况，只测试get请求----------------------------------
+    
+    /**
+    * Test Get Connect Refused(504)
+    */
+    @Test
+    public void testGetConnectRefused()
+    {
+        
+        try
+        {
+            HashMap<String, String> result=Http.sentRequest(true,CONNECT_REFUSED_URL, null, HttpRequest.METHOD_GET, null);
+            assertEquals("response status is not 504", "504", result.get("code"));
+            assertThat("not connect time out exception", result.get("message"), containsString("Connection refused: connect"));
+        }
+        catch (Exception e)
+        {
+            fail("get method excute error: " + e);
+        }
+        
+    }
+    
+    /**
+     * Test Get Not Found(404)
+     */
+     @Test
+     public void testGetNotFound()
+     {
+         try
+         {
+             HashMap<String, String> result=Http.sentRequest(true,NOT_FOUND_URL, null, HttpRequest.METHOD_GET, null);
+             assertEquals("not 404 exception", "404", result.get("code"));
+         }
+         catch (Exception e)
+         {
+             fail("get method excute error:" + e);
+         }
+         
+     }
+     
+     /**
+      * Test Get  Http Version Not Supported(505)
+      */
+      @Test
+      public void testGetNotSupported()
+      {
+          try
+          {
+              HashMap<String, String> result=Http.sentRequest(true,NOT_SUPPORTED_URL, XML, HttpRequest.METHOD_GET, null);
+              assertEquals("not 505 exception", "505", result.get("code"));
+          }
+          catch (Exception e)
+          {
+              fail("get method excute error:" + e);
+          }
+          
+      }
+      
+      //  ------------------------------华丽分割线----------------------------------
+      //  ------------------------------华丽分割线----------------------------------
+      //  ------------------------------性能测试：
+      //      1.针对aaa，分别发起多例http请求，控制并发线程数量，记录测试耗时及异常，方便和其他方式进行比较。
+      //      2.分别编写aio和nio测试桩，使用相同测试用例进行测试，记录测试耗时及异常，方便和其他方式进行比较 ----------------------------------
+      
+      
+      public static void main(String[] args)
+    {
+          try
+        {
+              testException();
+        }
+        catch (Exception e)
+        {
+            log.error(e.toString());
+           
+        }
+    }
+      
+      public static void testException() 
+      
+      {
+          String a=null;
+          a.contains("a");
+          
+      }
+      
+      
+}

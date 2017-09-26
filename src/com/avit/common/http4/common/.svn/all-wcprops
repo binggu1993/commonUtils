@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common
+END
+HttpMethods.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/HttpMethods.java
+END
+HttpConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/HttpConfig.java
+END
+SSLs.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/SSLs.java
+END
+HttpCookies.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/HttpCookies.java
+END
+HttpHeader.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/HttpHeader.java
+END
+Utils.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/avit/!svn/ver/37778/02_product/PORTAL/tools/common/src/com/avit/common/http4/common/Utils.java
+END

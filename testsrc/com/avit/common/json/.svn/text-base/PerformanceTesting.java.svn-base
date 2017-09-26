@@ -1,0 +1,531 @@
+package com.avit.common.json;
+
+import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.junit.Test;
+
+import com.avit.common.json.bean.ChannelEpg;
+import com.avit.common.json.bean.ChannelEpgAfter;
+import com.avit.common.json.bean.UILinkCategory;
+import com.avit.common.json.bean.UIPayChannel;
+import com.avit.common.json.fastJson.FastJsonUtil;
+import com.avit.common.json.gson.GsonJsonUtil;
+import com.avit.common.json.jackson.JacksonJsonUtil;
+import com.avit.common.lang.DateUtils;
+import com.google.gson.Gson;
+
+/**
+ * json性能测试
+ * @author binggu
+ *
+ */
+public class PerformanceTesting
+{
+    
+    /**
+     * Gson、jackson、fastJson序列化性能测试。
+     * @param count负载大小 100次
+     * @param num 循环测试次数 50次
+     */
+    @Test
+    public void testToJson()
+    {
+        
+       for(int ii=0;ii<5;ii++)
+       {
+        //负载大小
+        int count = 100;
+        //循环次数
+        int num = 10000;
+        for (int i = 0; i < 3; i++)
+        {
+            List epgList= createtoJsonData(count,ChannelEpg.class);
+            List epgafterList= createtoJsonData(count,ChannelEpgAfter.class);
+            List uiList= createtoJsonData(count,UILinkCategory.class);
+            List uipayList= createtoJsonData(count,UIPayChannel.class);
+            //序列化时间
+            long totalTime = 0;
+            long totalTime1 = 0;
+            long totalTime2 = 0;
+            //反序列化时间
+            long totalTime3 = 0;
+            long totalTime4 = 0;
+            long totalTime5 = 0;
+            for (int j = 0; j < num; j++)
+            {
+                
+                //序列化测试
+                long time1 = System.currentTimeMillis();
+                String result = GsonJsonUtil.toJson(epgList);
+                String result01 = GsonJsonUtil.toJson(epgafterList);
+                String result02 = GsonJsonUtil.toJson(uiList);
+                String result03 = GsonJsonUtil.toJson(uipayList);
+                long time2 = System.currentTimeMillis();
+                totalTime = totalTime + (time2 - time1);
+                 
+                long time3 = System.currentTimeMillis();
+                String result1 = JacksonJsonUtil.transObjToJson(epgList);
+                String result11 = JacksonJsonUtil.transObjToJson(epgafterList);
+                String result12 = JacksonJsonUtil.transObjToJson(uiList);
+                String result13 = JacksonJsonUtil.transObjToJson(uipayList);
+                long time4 = System.currentTimeMillis();
+                totalTime1 += (time4 - time3);
+                
+                long time5 = System.currentTimeMillis();
+                String result2 = FastJsonUtil.toJSONString(epgList);
+                String result21 = FastJsonUtil.toJSONString(epgafterList);
+                String result22 = FastJsonUtil.toJSONString(uiList);
+                String result23 = FastJsonUtil.toJSONString(uipayList);
+                long time6 = System.currentTimeMillis();
+                totalTime2 += (time6 - time5);
+                
+                //反序列化测试
+                long time7 = System.currentTimeMillis();
+                GsonJsonUtil.fromJson(result, List.class);
+                GsonJsonUtil.fromJson(result01, List.class);
+                GsonJsonUtil.fromJson(result02, List.class);
+                GsonJsonUtil.fromJson(result03, List.class);
+                long time8 = System.currentTimeMillis();
+                totalTime3 += (time8 - time7);
+                
+                long time9 = System.currentTimeMillis();
+                JacksonJsonUtil.transJsonToObj(result1, List.class);
+                JacksonJsonUtil.transJsonToObj(result11, List.class);
+                JacksonJsonUtil.transJsonToObj(result12, List.class);
+                JacksonJsonUtil.transJsonToObj(result13, List.class);
+                long time10 = System.currentTimeMillis();
+                totalTime4 += (time10 - time9);
+                
+                long time11 = System.currentTimeMillis();
+                try
+                {
+                    FastJsonUtil.fromJson(result2, List.class);
+                    FastJsonUtil.fromJson(result21, List.class);
+                    FastJsonUtil.fromJson(result21, List.class);
+                    FastJsonUtil.fromJson(result23, List.class);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    System.out.println(e);
+                }
+                long time12 = System.currentTimeMillis();
+                totalTime5 += (time12 - time11);
+                
+                epgList = null;
+                epgafterList=null;
+                uiList=null;
+                uipayList=null;
+                try
+                {
+                    Thread.sleep(20);
+                }
+                catch (InterruptedException e)
+                {
+                    fail("method excute error: " + e);
+                    
+                }
+            }
+            System.out.println("list size ：" + count);
+            System.out.println("gson序列化耗时：" + (double)totalTime / num);
+            System.out.println("jackson序列化耗时：" + (double)totalTime1 / num);
+            System.out.println("fastJson序列化耗时：" + (double)totalTime2 / num);
+            System.out.println();
+            System.out.println("gson反序列化耗时：" + (double)totalTime3 / num);
+            System.out.println("jackson反序列化耗时：" + (double)totalTime4 / num);
+            System.out.println("fastJson反序列化耗时：" + (double)totalTime5 / num);
+            System.out.println("--------------华丽的分割线------------------");
+            count = count * 10;
+        }
+       }
+    }
+    
+    /**
+     * 单独测试 fastjson序列化
+     */
+    @Test
+    public void testToFastJson()
+    {
+        //负载大小
+        int count = 100;
+        //循环次数
+        int num = 50;
+        for (int i = 0; i < 5; i++)
+        {
+            //序列化时间
+            long totalTime2 = 0;
+            //反序列化时间
+            long totalTime5 = 0;
+            for (int j = 0; j < num; j++)
+            {
+                List<ChannelEpg> epgList= createtoJsonData(count,ChannelEpg.class);
+                
+                
+                long time5 = System.currentTimeMillis();
+                String result2=FastJsonUtil.toJSONString(epgList);
+                long time6 = System.currentTimeMillis();
+                totalTime2 += (time6 - time5);
+                
+                
+                long time11 = System.currentTimeMillis();
+                try
+                {
+                    FastJsonUtil.fromJson(result2, List.class);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    System.out.println(e);
+                }
+                long time12 = System.currentTimeMillis();
+                totalTime5 += (time12 - time11);
+                
+            }
+            System.out.println("list size ：" + count);
+            System.out.println("fastJson序列化耗时：" + (double)totalTime2 / num);
+            System.out.println();
+            System.out.println("fastJson反序列化耗时：" + (double)totalTime5 / num);
+            System.out.println("--------------华丽的分割线------------------");
+            count = count * 10;
+        }
+    }
+    /**
+     * 多线程测试用例  序列化测试，分别测试gson、jackson、fastjson，循环测试50次取平均值。
+     * 测试用例：threadNum  100,1000,10000
+     *        dataSize 100,1000,10000,100000,1000000
+     */
+    @Test
+    public void testToJsonMutiTread()
+    {
+        double time=0.0;
+        for(int i=0;i<10;i++)
+        {
+            double result= testToJsonMutiTread(10000, 10000, 3);
+            if(i!=0)
+            {
+                time+=result; 
+            }
+        }
+        System.out.println("序列化平均耗时："+(double)time/9);
+    }
+    
+    /**
+     * 多线程测试用例  反序列化测试，分别测试gson、jackson、fastjson，循环测试50次取平均值。
+     * 测试用例：threadNum  100,1000,10000
+     *        dataSize 100,1000,10000,100000,1000000
+     */
+    @Test 
+    public void testFromJsonMutiTread()
+    {
+        double time=0.0;
+        for(int i=0;i<10;i++)
+        {
+            double result= testFromJsonMutiTread(10000, 10000, 3);
+            if(i!=0)
+            {
+                time+=result; 
+            }
+        }
+        System.out.println("反序列化平均耗时："+(double)time/9);
+    }
+    
+ 
+    public double testToJsonMutiTread(int threadNum,int dataSize,final int toolClass)
+    {
+        final List<ChannelEpg> epgList= createtoJsonData(dataSize,ChannelEpg.class);
+        double time=0.0;
+        long time1 = System.currentTimeMillis();
+        ExecutorService executors =Executors.newFixedThreadPool(100);
+        for(int i=0;i<threadNum;i++)
+        {
+            executors.execute(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    if(toolClass==1)
+                    {
+                        GsonJsonUtil.toJson(epgList);
+//                        Gson gson=new Gson();
+//                        gson.toJson(list);
+                    }else if(toolClass==2)
+                    {
+                        JacksonJsonUtil.transObjToJson(epgList);
+                    }else if(toolClass==3)
+                    {
+                        FastJsonUtil.toJSONString(epgList);
+                    }
+                }
+            });
+        }
+        try
+        {
+            executors.shutdown();
+        }
+        finally
+        {
+            while(true)
+            {
+                if (executors.isTerminated())
+                {
+                    long time2 = System.currentTimeMillis();
+                    executors.shutdown();
+                    time=(double)(time2 - time1)/threadNum;
+                    if(toolClass==1)
+                    {
+                    System.out.println("gson多线程序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }else if(toolClass==2)
+                    {
+                        System.out.println("jackson多线程序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }else if(toolClass==3)
+                    {
+                        System.out.println("fastJson多线程序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }
+                    break;
+                }
+            }
+        }
+        return time;
+    }
+    
+    /**
+     * 多线程测试用例 测试  Gson 序列化
+     */
+    @Test
+    public void testToGsonMutiTreads()
+    {
+        final List<ChannelEpg> epgList= createtoJsonData(1000,ChannelEpg.class);
+        for(int j=0;j<50;j++)
+        {
+        int count=100;
+        long time1 = System.currentTimeMillis();
+        ExecutorService executors =Executors.newFixedThreadPool(100);
+        for(int i=0;i<count;i++)
+        {
+            executors.execute(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    Gson gson=new Gson();
+                    gson.toJson(epgList);
+                }
+            });
+        }
+        try
+        {
+            executors.shutdown();
+        }
+        finally
+        {
+            while(true)
+            {
+                if (executors.isTerminated())
+                {
+                    long time2 = System.currentTimeMillis();
+                    executors.shutdown();
+                    System.out.println("gson多线程序列化测试，线程数量："+count+"次，耗时：" + (double)(time2 - time1)/count);
+                    break;
+                }
+            }
+        }
+        }
+    }
+    
+    
+    
+    /**
+     * 多线程测试用例 测试  反 序列化
+     */
+    
+    public double testFromJsonMutiTread(int threadNum,int dataSize,final int toolClass)
+    {
+        double time=0.0;
+        final String testData;
+        if(toolClass==1)
+        {
+            testData= createFromGsonData(dataSize);
+        }else if(toolClass==2)
+        {
+            testData=createFromjacksonData(dataSize);
+        }else 
+        {
+            testData=createFromFastJsonData(dataSize);
+        }
+        
+        long time1 = System.currentTimeMillis();
+        ExecutorService executors =Executors.newFixedThreadPool(20);
+        for(int i=0;i<threadNum;i++)
+        {
+            executors.execute(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    if(toolClass==1)
+                    {
+                        GsonJsonUtil.fromJson(testData,List.class);
+                    }else if(toolClass==2)
+                    {
+                        JacksonJsonUtil.transJsonToObj(testData,List.class);
+                    }else if(toolClass==3)
+                    {
+                        try
+                        {
+                            FastJsonUtil.fromJson(testData,List.class);
+                        }
+                        catch (Exception e)
+                        {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                    
+                }
+            });
+        }
+        try
+        {
+            executors.shutdown();
+        }
+        finally
+        {
+            while(true)
+            {
+                if (executors.isTerminated())
+                {
+                    long time2 = System.currentTimeMillis();
+                    executors.shutdown();
+                    time=(double)(time2 - time1)/threadNum;
+                    if(toolClass==1)
+                    {
+                    System.out.println("gson多线程反序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }else if(toolClass==2)
+                    {
+                        System.out.println("jackson多线程反序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }else if(toolClass==3)
+                    {
+                        System.out.println("fastJson多线程反序列化测试，线程数量："+threadNum+"次，载荷大小:"+dataSize+"耗时：" + time);
+                    }
+                    break;
+                }
+            }
+            
+        }
+        return time;
+    }
+    
+    
+
+    /**
+     * 创建序列化测试数据
+     * @param count
+     * @return
+     */
+    public <T> List<T>  createtoJsonData(int count,Class<T> clazz)
+    {
+        List<T> list = new ArrayList<T>();
+        try
+        {
+            int j = count;
+            Person per = null;
+            ChannelEpg epg=null;
+            ChannelEpgAfter epgafter=null;
+            UILinkCategory ul=null;
+            UIPayChannel uip=null;
+            while (j > 0)
+            {
+                if(clazz.newInstance() instanceof ChannelEpg)
+                {
+                per = new Person();
+                per.setAddress("china" + new Random().nextInt(j));
+                per.setName("wu" + new Random().nextInt(j));
+                per.setBirthday(new Date());
+                epg=new ChannelEpg();
+                epg.setBegin(1+j);
+                epg.setBeginTime("2016-12-15");
+                epg.setChannelCode("2"+j);
+                epg.setOperationCode("OP001"+j);
+                epg.setProgramGuideId("epg"+j);
+                epg.setPerson(per);
+                list.add((T)epg);
+                }else if(clazz.newInstance() instanceof ChannelEpgAfter)
+                {
+                epgafter=new ChannelEpgAfter();
+                epgafter.setBeginTime(new Date());
+                epgafter.setChannelCode("cctv"+j);
+                epgafter.setDay("day"+j);
+                epgafter.setEventName("sheji");
+                epgafter.setEndTime(DateUtils.addDays(new Date(), 2));
+                epgafter.setId((long)j);
+                list.add((T)epgafter);
+                }else if(clazz.newInstance() instanceof UILinkCategory)
+                {
+                ul=new UILinkCategory();
+                ul.setCode("ul"+j);
+                ul.setCreateTime(new Date());
+                ul.setDescription("hehe"+j);
+                ul.setUpdateTime(DateUtils.addDays(new Date(),1));
+                list.add((T)ul);
+                }else if(clazz.newInstance() instanceof UIPayChannel)
+                {
+                uip=new UIPayChannel();
+                uip.setChannelCode("epg"+j);
+                uip.setChannelName("pindao"+j);
+                uip.setOrder((long)j);
+                uip.setPosterUrl("www.baidu.com/"+j);
+                uip.setPosterSpec("400*"+j);
+                list.add((T)uip);
+                }
+                j--;
+            }
+      
+        }
+        catch (InstantiationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            return list;
+        }
+    }
+    
+    /**
+     * 创建gson反序列化测试数据
+     */
+    public String createFromGsonData(int count)
+    {
+        String strFromJson = GsonJsonUtil.toJson(createtoJsonData(count,ChannelEpg.class));
+        return strFromJson;
+    }
+    
+    /**
+     * 创建jackson反序列化测试数据
+     */
+    public String createFromjacksonData(int count)
+    {
+        String strFromJson = JacksonJsonUtil.transObjToJson(createtoJsonData(count,ChannelEpg.class));
+        return strFromJson;
+    }
+    /**
+     * 创建fastjson反序列化测试数据
+     */
+    public String createFromFastJsonData(int count)
+    {
+        String strFromJson = FastJsonUtil.toJSONString(createtoJsonData(count,ChannelEpg.class));
+        return strFromJson;
+    }
+}

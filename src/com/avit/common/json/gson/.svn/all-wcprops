@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/avit/!svn/ver/38484/02_product/PORTAL/tools/common/src/com/avit/common/json/gson
+END
+EmptyAdapterFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/38484/02_product/PORTAL/tools/common/src/com/avit/common/json/gson/EmptyAdapterFactory.java
+END
+StringNullAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/avit/!svn/ver/38484/02_product/PORTAL/tools/common/src/com/avit/common/json/gson/StringNullAdapter.java
+END
+GsonJsonUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/avit/!svn/ver/38786/02_product/PORTAL/tools/common/src/com/avit/common/json/gson/GsonJsonUtil.java
+END

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable
+END
+MutableByte.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableByte.java
+END
+MutableInt.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableInt.java
+END
+MutableDouble.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableDouble.java
+END
+MutableFloat.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableFloat.java
+END
+Mutable.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/Mutable.java
+END
+MutableShort.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableShort.java
+END
+MutableObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableObject.java
+END
+package-info.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/package-info.java
+END
+MutableBoolean.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableBoolean.java
+END
+MutableLong.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/avit/!svn/ver/37442/02_product/PORTAL/tools/common/src/org/apache/commons/lang3/mutable/MutableLong.java
+END

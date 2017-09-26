@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp
+END
+FtpUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp/FtpUtils.java
+END
+FtpRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp/FtpRequest.java
+END
+FtpReply.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp/FtpReply.java
+END
+ConnectFailException.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp/ConnectFailException.java
+END
+FtpReplyCode.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/avit/!svn/ver/38348/02_product/PORTAL/tools/common/src/com/avit/common/lang/ftp/FtpReplyCode.java
+END
